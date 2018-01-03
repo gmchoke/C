@@ -47,27 +47,27 @@ service nginx restart
 wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/gmchoke/C/master/openvpn-debian.tar" 
 cd /etc/openvpn/ 
 tar xf openvpn.tar 
-wget -O /etc/openvpn/1194.conf "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/1194.conf"
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/gmchoke/C/master/1194.conf"
 service openvpn restart 
 sysctl -w net.ipv4.ip_forward=1 
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf 
 iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 
 iptables-save > /etc/iptables_yg_baru_dibikin.conf 
-wget -O /etc/network/if-up.d/iptables "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/iptables" 
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/gmchoke/C/master/iptables" 
 chmod +x /etc/network/if-up.d/iptables 
 service openvpn restart 
 
 # konfigurasi openvpn 
 cd /etc/openvpn/ 
-wget -O /etc/openvpn/True-Dtac.ovpn  "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/client-1194.conf" 
+wget -O /etc/openvpn/True-Dtac.ovpn  "https://raw.githubusercontent.com/gmchoke/C/master/client-1194.conf" 
 MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | grep -v '192.168'`; 
 sed -i s/xxxxxxxxx/$MYIP/g /etc/openvpn/True-Dtac.ovpn; cp True-Dtac.ovpn /home/vps/public_html/ 
 
 # install badvpn 
 cd 
-wget -O /usr/bin/badvpn-udpgw "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/badvpn-udpgw" 
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gmchoke/C/master/badvpn-udpgw" 
 if [ "$OS" == "x86_64" ]; then 
-wget -O /usr/bin/badvpn-udpgw "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/badvpn-udpgw64" 
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gmchoke/C/master/badvpn-udpgw64" 
 fi 
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local 
 chmod +x /usr/bin/badvpn-udpgw 
@@ -92,7 +92,7 @@ service dropbear restart
 # Install Squid 
 apt-get -y install squid3 
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig 
-wget -O /etc/squid3/squid.conf "https://scripkguza.000webhostapp.com/KGUZA-ALL-SCRIP/squid3.conf" 
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/gmchoke/C/master/squid3.conf" 
 MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | grep -v '192.168'`; 
 sed -i s/xxxxxxxxx/$MYIP/g /etc/squid3/squid.conf; 
 service squid3 restart 
