@@ -13,7 +13,7 @@ apt-get -y install openvpn
 ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/gmchoke/C/master/openvpn-debian.tar"
+wget -O /etc/openvpn/openvpn.tar "https://docs.google.com/uc?export=download&id=1VsWCjCWk0kZWGsc0dHTyV72bSq353aMo"
 cd /etc/openvpn/
 tar xf openvpn.tar
 # Download 1194-2.conf in Google to Save 1194.conf
