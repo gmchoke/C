@@ -81,3 +81,4 @@ sed -i s/client.zip/client.php/g /var/www/html/vnstat/index.php;
 
 sudo service apache2 restart
 #nano /var/www/html/vnstat/config.php
+rm /root
