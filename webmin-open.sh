@@ -1,5 +1,5 @@
-sudo passwd
-sudo tee -a /etc/apt/sources.list << EOF
+sudo passwd root
+sudo  tee  -a /etc/apt/sources.list << EOF
 deb http://download.webmin.com/download/repository sarge contrib
 deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
 EOF
